@@ -1,0 +1,17 @@
+# Maven specific ignores
+target/
+*.log
+*.class
+*.jar
+*.war
+*.ear
+
+# Eclipse specific ignores
+.classpath
+.project
+.settings/
+
+# IntelliJ specific ignores
+.idea/
+*.iml
+*.ipr
