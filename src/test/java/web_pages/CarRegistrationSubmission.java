@@ -1,4 +1,4 @@
-package webpages;
+package web_pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;

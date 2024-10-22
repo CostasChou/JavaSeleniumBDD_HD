@@ -1,4 +1,4 @@
-package StepDefinitions;
+package step_definitions;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -9,9 +9,10 @@ import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.en.*;
 import io.github.bonigarcia.wdm.WebDriverManager;
-import webpages.CarRegistrationSubmission;
+import test_runner.TestRunner;
+import web_pages.CarRegistrationSubmission;
+
 import org.junit.Assert;
-import RunnerClass.RunnerClass; // Import class "RunnerClass" to access static variables
 
 
 public class CarRegistrationSubmissionSteps {
@@ -27,7 +28,7 @@ public class CarRegistrationSubmissionSteps {
 
     public void setupWebDriver() {
         // Get the browser type from "RunnerClass" class
-        String browser = RunnerClass.browser;
+        String browser = TestRunner.browser;
         
         if (browser.equalsIgnoreCase("chrome")) {
             WebDriverManager.chromedriver().setup();
@@ -53,7 +54,7 @@ public class CarRegistrationSubmissionSteps {
     @Given("user navigates to the car registration webpage")
     public void user_navigates_to_the_car_registration_webpage() {
         // Access the HTML file path from "RunnerClass" class
-        String filePath = "file:///" + RunnerClass.htmlFilePath;
+        String filePath = "file:///" + TestRunner.htmlFilePath;
         driver.get(filePath);
         carRegistrationSubmission = new CarRegistrationSubmission(driver);
     }
