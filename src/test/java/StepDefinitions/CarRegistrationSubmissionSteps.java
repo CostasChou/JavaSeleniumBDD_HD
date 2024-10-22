@@ -1,32 +1,59 @@
 package StepDefinitions;
 
-import java.io.File;
-
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+
+import io.cucumber.java.After;
+import io.cucumber.java.Before;
 import io.cucumber.java.en.*;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import webpages.CarRegistrationSubmission;
 import org.junit.Assert;
+import RunnerClass.RunnerClass; // Import class "RunnerClass" to access static variables
+
 
 public class CarRegistrationSubmissionSteps {
 	
-	WebDriver driver;
+    WebDriver driver;
     CarRegistrationSubmission carRegistrationSubmission;
-    
-    // Path to the local HTML file
-    File htmlFile = new File("C:/Users/choul/Downloads/QA Programming Exercise.html");
 
-    // Get the absolute path of the file and prepend "file://" to the path
-    String filePath = "file:///" + htmlFile.getAbsolutePath();
-	
+    // Setup WebDriver for each test (Scenario)
+    @Before
+    public void setup() {
+        setupWebDriver();  // Ensure new WebDriver session for each test
+    }
+
+    public void setupWebDriver() {
+        // Get the browser type from "RunnerClass" class
+        String browser = RunnerClass.browser;
+        
+        if (browser.equalsIgnoreCase("chrome")) {
+            WebDriverManager.chromedriver().setup();
+            driver = new ChromeDriver();
+        } else if (browser.equalsIgnoreCase("firefox")) {
+            WebDriverManager.firefoxdriver().setup();
+            driver = new FirefoxDriver();
+        } else if (browser.equalsIgnoreCase("edge")) {
+            WebDriverManager.edgedriver().setup();
+            driver = new EdgeDriver();
+        } else {
+            throw new RuntimeException("Browser type not supported: " + browser);
+        }
+    }
+
+    @After
+    public void tearDown() {
+        if (driver != null) {
+            driver.quit();  // Close the browser after the test
+        }
+    }
+
     @Given("user navigates to the car registration webpage")
     public void user_navigates_to_the_car_registration_webpage() {
-		// Setup WebDriver using WebDriverManager
-        WebDriverManager.chromedriver().setup();
-        driver = new ChromeDriver();
-        
-        // Open the car registration local page
+        // Access the HTML file path from "RunnerClass" class
+        String filePath = "file:///" + RunnerClass.htmlFilePath;
         driver.get(filePath);
         carRegistrationSubmission = new CarRegistrationSubmission(driver);
     }
@@ -50,6 +77,8 @@ public class CarRegistrationSubmissionSteps {
     public void a_success_message_is_displayed_saying(String expectedSuccessMessage) {
     	 String actualMessage = carRegistrationSubmission.getSuccessMessageElement().getText();
     	 Assert.assertEquals("Success message does not match!", expectedSuccessMessage, actualMessage);
+    	 Boolean errorLabelIsHiddenWhenSuccessMessageIsDisplayed = !carRegistrationSubmission.getErrorMessageElement().isDisplayed();
+    	 Assert.assertTrue("The error message should be hidden when a success message is displayed.", errorLabelIsHiddenWhenSuccessMessageIsDisplayed);
    
     	// Demonstration purpose: Add a 2 seconds sleep after the test validation to visually check the result
  	    try {
@@ -57,8 +86,6 @@ public class CarRegistrationSubmissionSteps {
  	    } catch (InterruptedException e) {
  	        e.printStackTrace();
  	    }
-    	 driver.close();
-    	 driver.quit();
     }
 
     @When("user selects one year {string}")
@@ -69,7 +96,9 @@ public class CarRegistrationSubmissionSteps {
     @Then("an error message is displayed saying {string}")
     public void an_error_message_is_displayed_saying(String expectedErrorMessage) {
     	 String actualMessage = carRegistrationSubmission.getErrorMessageElement().getText();
-    	 Assert.assertEquals("Success message does not match!", expectedErrorMessage, actualMessage);
+    	 Assert.assertEquals("Error message does not match!", expectedErrorMessage, actualMessage);
+    	 Boolean successLabelIsHiddenWhenErrorMessageIsDisplayed = !carRegistrationSubmission.getSuccessMessageElement().isDisplayed();
+    	 Assert.assertTrue("The error message should be hidden when a success message is displayed.", successLabelIsHiddenWhenErrorMessageIsDisplayed);
     	 
     	// Demonstration purpose: Add a 2 seconds sleep after the test validation to visually check the result
     	    try {
@@ -77,8 +106,6 @@ public class CarRegistrationSubmissionSteps {
     	    } catch (InterruptedException e) {
     	        e.printStackTrace();
     	    }
-    	 driver.close();
-    	 driver.quit();
     }
     
 

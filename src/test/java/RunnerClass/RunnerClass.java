@@ -15,5 +15,18 @@ import io.cucumber.junit.Cucumber;
 		   tags = "@SmokeTests" // tag filtering
 		)
 public class RunnerClass {
-   // No additional code needed
+	
+    // Static field for the browser type
+    public static String browser = "chrome"; // only accepted values = chrome or firefox or edge.
+
+    // Static field for the path to the local HTML file. // Update this path with your LOCAL path to the actual .html file when you need to execute the project
+    public static String htmlFilePath = "C:/Users/choul/Downloads/QA Programming Exercise.html"; 
+
+    public static void setBrowser(String selectedBrowser) {
+        browser = selectedBrowser;
+    }
+
+    public static void setHtmlFilePath(String filePath) {
+        htmlFilePath = filePath;
+    }
 }
