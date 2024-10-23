@@ -4,7 +4,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
-
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.en.*;
@@ -22,7 +21,7 @@ public class CarRegistrationSubmissionSteps {
 
     // Setup WebDriver for each test (Scenario)
     @Before
-    public void setup() {
+    public void setUp() {
         setupWebDriver();  // Ensure new WebDriver session for each test
     }
 
@@ -47,7 +46,7 @@ public class CarRegistrationSubmissionSteps {
     @After
     public void tearDown() {
         if (driver != null) {
-            driver.quit();  // Close the browser after the test
+            driver.quit();  // Close the browser and session after the test
         }
     }
 
@@ -109,7 +108,6 @@ public class CarRegistrationSubmissionSteps {
     	    }
     }
     
-
     @When("user enters an invalid car registration number {string}")
     public void user_enters_an_invalid_car_registration_number(String carRegistrationNumber) {
     	carRegistrationSubmission.enterCarRegistration(carRegistrationNumber);

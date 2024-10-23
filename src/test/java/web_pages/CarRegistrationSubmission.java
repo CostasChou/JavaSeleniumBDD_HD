@@ -16,9 +16,11 @@ public class CarRegistrationSubmission {
 	private By label_successMessage = By.cssSelector(".alert.alert-success");
 	private By label_errorMessage = By.cssSelector(".alert.alert-danger");
 	
-	// Ensures that the WebDriver instance is passed when creating the page object,
-	// allowing the same WebDriver session to be reused across different page actions,
-	// so the browser state is maintained throughout the test.
+	/* 
+	   Ensures that the WebDriver instance is passed when creating the page object,
+	   allowing the same WebDriver session to be reused across different page actions,
+	   so the browser state is maintained throughout the test. 
+	 */
 	public CarRegistrationSubmission(WebDriver driver){
 		this.driver = driver;
 	}
