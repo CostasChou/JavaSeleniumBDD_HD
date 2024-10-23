@@ -125,3 +125,6 @@ Consider adding more advanced reporting tools or integrating with third-party se
 
 ### 🔄 Retry Logic:
 - Introduce retry logic to re-run tests automatically in case of intermittent failures or flaky tests. This can help stabilize test results and improve the reliability of automated testing.
+
+### 📧 Automated Report Emails:
+- Implement the ability to send automated test reports via email once the test execution is complete. This can be done by integrating an email service like SMTP or third-party APIs (e.g., SendGrid) to automatically send test reports in various formats (HTML, JSON, XML) to relevant stakeholders after each test run.
