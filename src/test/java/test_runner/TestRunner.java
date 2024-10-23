@@ -19,8 +19,19 @@ public class TestRunner {
     // Static field for the browser type
     public static String browser = "chrome"; // only accepted values = chrome or firefox or edge.
 
-    // Static field for the path to the local HTML file. // Update this path with your LOCAL path to the actual .html file when you need to execute the project
-    public static String htmlFilePath = "C:/Users/choul/Downloads/QA Programming Exercise.html"; 
+    // Static field for the path to the local HTML file.
+    public static String htmlFilePath = null; 
+
+    static {
+        // Use ClassLoader to load the file as a resource from 'src/test/resources'
+        ClassLoader classLoader = TestRunner.class.getClassLoader();
+        java.net.URL resource = classLoader.getResource("Sandbox/QA Programming Exercise.html");
+        if (resource != null) {
+            htmlFilePath = resource.getPath();
+        } else {
+            throw new RuntimeException("File not found: Sandbox/QA Programming Exercise.html");
+        }
+    }
 
     public static void setBrowser(String selectedBrowser) {
         browser = selectedBrowser;
