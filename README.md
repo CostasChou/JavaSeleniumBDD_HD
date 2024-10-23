@@ -48,6 +48,7 @@
    - Created `TestRunner.java`, responsible for configuring and running Cucumber tests.
    - Specifies the location of the feature files, step definitions, and output reports (.html, .json, .xml).
    - Uses tag filtering and manages browser selection through the `browser` field.
+   - Sandobx file `QA Programming Exercise.html` access should be treated as a resource rather than a direct file path. `ClassLoader` was used to resolve this issue.
 
 4) **🌐 Creation of the "web_pages" package**:
    - Created `CarRegistrationSubmission.java` following the Page Object Model (POM) design pattern.
