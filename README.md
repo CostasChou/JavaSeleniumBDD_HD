@@ -93,7 +93,7 @@
    - Generate the automated test reports in an interactive `.html` file.
    - The file `SmokeTests.html` will be saved in `e2e-ui-tests\target\cucumber-report-html\cucumber-html-reports\`.
 
-5. 🔍 Review the results of the automated tests**:
+5. 🔍 Review the results of the automated tests:
    - Open the file `e2e-ui-tests\target\cucumber-report-html\cucumber-html-reports\SmokeTests.html` in your browser.
    - You can interact with the test results and explore details like:
      - Cucumber features, tags, hooks, steps.
