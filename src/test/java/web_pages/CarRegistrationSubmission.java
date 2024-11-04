@@ -40,12 +40,12 @@ public class CarRegistrationSubmission {
 		driver.findElement(button_Submit).click();
 	}
 	
-    // Getters
-    public WebElement getSuccessMessageElement() {
-        return driver.findElement(label_successMessage);
-    }
+    	// GETTERS
+    	public WebElement getSuccessMessageElement() {
+        	return driver.findElement(label_successMessage);
+    	}
     
-    public WebElement getErrorMessageElement() {
-        return driver.findElement(label_errorMessage);
-    }
+    	public WebElement getErrorMessageElement() {
+        	return driver.findElement(label_errorMessage);
+    	}
 }
