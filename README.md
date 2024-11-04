@@ -1,4 +1,4 @@
-# 🖥️ Java Selenium BDD - End-to-End Testing Framework 🚀
+# 🖥️ Java Selenium BDD - End-to-End Testing Framework
 
 ## Reasoning - Steps Followed (High-Level)
 
