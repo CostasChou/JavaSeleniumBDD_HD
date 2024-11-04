@@ -85,7 +85,7 @@
    - 🧹 Clean the previous build.
    - 🧪 Run all tests defined in your Cucumber feature files.
 
-4. 📄 Generate the test reports** by running:
+4. 📄 Generate the test reports by running:
    ```bash
    mvn verify -DskipTests
    ```
